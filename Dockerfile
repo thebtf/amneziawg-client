@@ -35,7 +35,7 @@ COPY --from=builder /build-tools/src/wg /usr/bin/awg
 COPY --from=builder /build-tools/src/wg-quick/linux.bash /usr/bin/awg-quick
 RUN chmod +x /usr/bin/awg-quick
 
-RUN sed -i 's|cmd sysctl -q net.ipv4.conf.all.src_valid_mark=1|sysctl -q net.ipv4.conf.all.src_valid_mark=1 || true|' /usr/bin/awg-quick
+RUN sed -i 's@cmd sysctl -q net.ipv4.conf.all.src_valid_mark=1@sysctl -q net.ipv4.conf.all.src_valid_mark=1 || true@' /usr/bin/awg-quick
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
